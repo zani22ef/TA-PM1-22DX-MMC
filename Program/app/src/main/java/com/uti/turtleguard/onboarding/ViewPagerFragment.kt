@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import com.uti.turtleguard.R
 import com.uti.turtleguard.databinding.FragmentViewPagerBinding
+import com.uti.turtleguard.onboarding.screens.FifthScreenFragment
 import com.uti.turtleguard.onboarding.screens.FirstScreenFragment
 import com.uti.turtleguard.onboarding.screens.FourthScreenFragment
 import com.uti.turtleguard.onboarding.screens.ScndScreenFragment
@@ -48,7 +50,7 @@ class ViewPagerFragment : Fragment() {
             ScndScreenFragment(),
             ThirdScreenFragment(),
             FourthScreenFragment(),
-            FirstScreenFragment()
+            FifthScreenFragment()
         )
 
         val adapter = ViewPagerAdapter(
@@ -57,9 +59,24 @@ class ViewPagerFragment : Fragment() {
             lifecycle
         )
         binding.viewPager.adapter = adapter
+        // Setup back pressed callback
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (binding.viewPager.currentItem == 0) {
+                        isEnabled = false
+                        requireActivity().onBackPressed()
+                    } else {
+                        binding.viewPager.currentItem = binding.viewPager.currentItem - 1
+                    }
+                }
+            }
+        )
         return binding.root
-
     }
+
+
 
     companion object {
         /**

@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewpager2.widget.ViewPager2
 import com.uti.turtleguard.R
+import com.uti.turtleguard.databinding.FragmentFirstScreenBinding
+import com.uti.turtleguard.databinding.FragmentScndScreenBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,7 +38,15 @@ class ScndScreenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scnd_screen, container, false)
+        //        Deklarsi sekaligus definisi variable binding
+        val binding = FragmentScndScreenBinding.inflate(inflater, container, false)
+        val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
+
+        binding.textView3.setOnClickListener {
+            viewPager?.currentItem=2
+        }
+
+        return binding.root
     }
 
     companion object {

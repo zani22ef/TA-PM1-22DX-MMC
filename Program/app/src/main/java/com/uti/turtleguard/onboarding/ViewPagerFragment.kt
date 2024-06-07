@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.uti.turtleguard.R
+import com.uti.turtleguard.databinding.FragmentViewPagerBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,8 +36,10 @@ class ViewPagerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_view_pager, container, false)
-        return view
+//        val view = inflater.inflate(R.layout.fragment_view_pager, container, false)
+//        deklarasi sekaligus definisi variable binding
+        val binding = FragmentViewPagerBinding.inflate(inflater, container, false)
+        return binding.root
 
     }
 

@@ -1,15 +1,11 @@
-package com.uti.turtleguard.onboarding.screens
+package com.uti.turtleguard.form
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager2.widget.ViewPager2
 import com.uti.turtleguard.R
-import com.uti.turtleguard.databinding.FragmentFifthScreenBinding
-import com.uti.turtleguard.databinding.FragmentFirstScreenBinding
-import com.uti.turtleguard.form.LoginFormFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [FifthScreenFragment.newInstance] factory method to
+ * Use the [LoginFormFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FifthScreenFragment : Fragment() {
+class LoginFormFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -39,13 +35,7 @@ class FifthScreenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        //        Deklarsi sekaligus definisi variable binding
-        val binding = FragmentFifthScreenBinding.inflate(inflater, container, false)
-        binding.btnGetStarted.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.frmMain, LoginFormFragment()).commit()
-        }
-
-        return binding.root
+        return inflater.inflate(R.layout.fragment_login_form, container, false)
     }
 
     companion object {
@@ -55,12 +45,12 @@ class FifthScreenFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment FifthScreenFragment.
+         * @return A new instance of fragment LoginFormFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            FifthScreenFragment().apply {
+            LoginFormFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

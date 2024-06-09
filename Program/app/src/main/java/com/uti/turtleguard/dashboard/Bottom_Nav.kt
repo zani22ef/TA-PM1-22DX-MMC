@@ -42,12 +42,21 @@ class Bottom_Nav : Fragment() {
             when(it.itemId){
 
 
+
+
             }
             true
         }
 
 
         return view
+    }
+
+//    Buat fungsi untuk bertransaksi dengan fragment
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.content, fragment).addToBackStack(null).commit()
     }
 
 

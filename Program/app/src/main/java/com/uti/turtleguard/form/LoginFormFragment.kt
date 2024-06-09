@@ -53,7 +53,8 @@ class LoginFormFragment : Fragment() {
             val loginSukses = lite.login(username, pass)
             if (loginSukses) {
                 Toast.makeText(requireContext(), "Login Berhasil", Toast.LENGTH_SHORT).show()
-
+                requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null)
+                    .replace(R.id.frmMain, Bottom_Nav()).commit()
             } else {
                 Toast.makeText(requireContext(), "Username/Password Salah", Toast.LENGTH_SHORT)
                     .show()

@@ -34,6 +34,7 @@
             tools:ignore="VisualLintBottomNav" />
 
         <FrameLayout
+            android:id="@+id/content"
             android:layout_width="409dp"
             android:layout_height="669dp"
             app:layout_constraintEnd_toEndOf="parent"

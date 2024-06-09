@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.uti.turtleguard.R
+import com.uti.turtleguard.databinding.FragmentBottomNavBinding
+import com.uti.turtleguard.databinding.FragmentLoginFormBinding
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -20,6 +23,8 @@ class Bottom_Nav : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var binding: FragmentBottomNavBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +37,19 @@ class Bottom_Nav : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bottom__nav, container, false)
+        val view = inflater.inflate(R.layout.fragment_bottom__nav, container, false)
+        binding.bottomNavigationView.setOnItemSelectedListener{
+            when(it.itemId){
+
+
+            }
+            true
+        }
+
+
+        return view
     }
+
 
     companion object {
         /**

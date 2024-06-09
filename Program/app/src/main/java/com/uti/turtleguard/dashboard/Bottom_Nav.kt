@@ -34,15 +34,17 @@ class Bottom_Nav : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_bottom__nav, container, false)
-        binding.bottomNavigationView.setOnItemSelectedListener{
-            when(it.itemId){
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+          // Menambahkan transaksi dengan HomeFragment dengan memakai fungsi transaksi
                 R.id.navigation_home -> replaceFragment(HomeFragment())
-
-
+                R.id.navigation_turtle -> replaceFragment(TurtleFragment())
 
 
             }
@@ -53,8 +55,8 @@ class Bottom_Nav : Fragment() {
         return view
     }
 
-//    Buat fungsi untuk bertransaksi dengan fragment
-    private fun replaceFragment(fragment: Fragment){
+    //    Buat fungsi untuk bertransaksi dengan fragment
+    private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.content, fragment).addToBackStack(null).commit()
@@ -71,12 +73,13 @@ class Bottom_Nav : Fragment() {
          * @return A new instance of fragment Bottom_Nav.
          */
         // TODO: Rename and change types and number of parameters
-        @JvmStatic fun newInstance(param1: String, param2: String) =
-                Bottom_Nav().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            Bottom_Nav().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
                 }
+            }
     }
 }

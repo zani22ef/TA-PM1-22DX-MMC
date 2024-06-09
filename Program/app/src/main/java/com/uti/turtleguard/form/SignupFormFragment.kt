@@ -51,7 +51,7 @@ class SignupFormFragment : Fragment() {
             val pengguna = Lite.Pengguna(nama,  username, pass)
             val hasil = lite.insertPengguna(pengguna)
             if (hasil != -1L) {
-                Toast.makeText(requireContext(), "Sign Up Berhasil, Silakan Login", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Sign Up Berhasil, Silakan Login", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(requireContext(), "Gagal memasukkan data", Toast.LENGTH_SHORT).show()
             }

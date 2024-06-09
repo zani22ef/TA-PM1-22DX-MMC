@@ -2,4 +2,8 @@
     <string name="app_name">Turtle Guard</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">home</string>
+    <string name="turtle">turtle</string>
+    <string name="report">report</string>
+    <string name="schedule">schedule</string>
 </resources>

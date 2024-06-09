@@ -47,6 +47,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bgd_form"
                 android:hint="Username"
+                android:digits="0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+                android:inputType="textFilter"
                 android:padding="10dp"
                 android:textColor="@color/white"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -62,6 +64,8 @@
                 android:background="@drawable/bgd_form"
                 android:hint="Password"
                 android:padding="10dp"
+                android:digits="0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+                android:inputType="textFilter"
                 android:textColor="@color/white"/>
         </com.google.android.material.textfield.TextInputLayout>
 

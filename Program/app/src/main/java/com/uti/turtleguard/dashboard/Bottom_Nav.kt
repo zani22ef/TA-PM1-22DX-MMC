@@ -46,6 +46,7 @@ class Bottom_Nav : Fragment() {
                 R.id.navigation_home -> replaceFragment(HomeFragment())
                 R.id.navigation_turtle -> replaceFragment(TurtleFragment())
                 R.id.navigation_report -> replaceFragment(ReportFragment())
+                R.id.navigation_schedule -> replaceFragment(ScheduleFragment())
 
 
             }

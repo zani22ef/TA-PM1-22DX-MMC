@@ -45,6 +45,7 @@ class Bottom_Nav : Fragment() {
           // Menambahkan transaksi dengan HomeFragment dengan memakai fungsi transaksi
                 R.id.navigation_home -> replaceFragment(HomeFragment())
                 R.id.navigation_turtle -> replaceFragment(TurtleFragment())
+                R.id.navigation_report -> replaceFragment(ReportFragment())
 
 
             }

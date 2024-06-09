@@ -40,6 +40,7 @@ class Bottom_Nav : Fragment() {
         val view = inflater.inflate(R.layout.fragment_bottom__nav, container, false)
         binding.bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId){
+                R.id.navigation_home -> replaceFragment(HomeFragment())
 
 
 

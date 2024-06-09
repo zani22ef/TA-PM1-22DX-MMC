@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.uti.turtleguard.R
+import com.uti.turtleguard.databinding.FragmentLoginFormBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,7 +36,15 @@ class LoginFormFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login_form, container, false)
+//        return inflater.inflate(R.layout.fragment_login_form, container, false)
+//        deklarasi sekaligus definisi variabel binding
+        val binding = FragmentLoginFormBinding.inflate(inflater, container, false)
+
+        binding.txtSignup.setOnClickListener(){
+            requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null).replace(R.id.frmMain, SignupFormFragment()).commit()
+        }
+
+        return binding.root
     }
 
     companion object {

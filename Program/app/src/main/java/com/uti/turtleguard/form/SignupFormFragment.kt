@@ -40,6 +40,7 @@ class SignupFormFragment : Fragment() {
 //        deklarasi sekaligus definisi variable binding
         val binding = FragmentSignupFormBinding.inflate(inflater, container, false)
 
+
         binding.txtSignin.setOnClickListener(){
             requireActivity().supportFragmentManager.beginTransaction().replace(R.id.frmMain, LoginFormFragment()).commit()
         }

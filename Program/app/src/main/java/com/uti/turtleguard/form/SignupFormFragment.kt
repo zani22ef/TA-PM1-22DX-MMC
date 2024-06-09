@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.uti.turtleguard.R
+import com.uti.turtleguard.config.Lite
 import com.uti.turtleguard.databinding.FragmentSignupFormBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -39,7 +41,23 @@ class SignupFormFragment : Fragment() {
 //        return inflater.inflate(R.layout.fragment_signup_form, container, false)
 //        deklarasi sekaligus definisi variable binding
         val binding = FragmentSignupFormBinding.inflate(inflater, container, false)
-
+//        panggil class lite
+        val lite = Lite(requireContext())
+//ketika btn sign up di klik
+        binding.btnSignup.setOnClickListener(){
+            val nama =  binding.inputNamalengkap.text.toString()
+            val username = binding.inputUsername.text.toString()
+            val pass = binding.inputPassword.text.toString()
+            val pengguna = Lite.Pengguna(nama,  username, pass)
+            val hasil = lite.insertPengguna(pengguna)
+            if (hasil != -1L) {
+                Toast.makeText(requireContext(), "Sign Up Berhasil, Silakan Login", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Gagal memasukkan data", Toast.LENGTH_SHORT).show()
+            }
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.frmMain, LoginFormFragment()).commit()
+        }
+//        kerika text sign in di klik
         binding.txtSignin.setOnClickListener(){
             requireActivity().supportFragmentManager.beginTransaction().replace(R.id.frmMain, LoginFormFragment()).commit()
         }

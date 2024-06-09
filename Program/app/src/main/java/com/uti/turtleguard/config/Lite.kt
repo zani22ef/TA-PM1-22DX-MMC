@@ -13,7 +13,7 @@ class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSI
 //        eksekusi kueri
         db?.execSQL(table)
 //        simpan data
-        val insert = "INSERT INTO pengguna VALUES(1,'ADMIN','root','admin')"
+        val insert = "INSERT INTO pengguna(nama_lengkap, username, password) VALUES('ADMIN','root','admin')"
         db?.execSQL(insert)
     }
 

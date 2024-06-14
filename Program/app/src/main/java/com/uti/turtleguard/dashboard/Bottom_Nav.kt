@@ -37,9 +37,8 @@ class Bottom_Nav : Fragment() {
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> replaceFragment(HomeFragment())
-                R.id.navigation_turtle -> replaceFragment(TurtleFragment())
                 R.id.navigation_report -> replaceFragment(ReportFragment())
-                R.id.navigation_schedule -> Toast.makeText(requireContext(), "Schedule selected", Toast.LENGTH_SHORT).show()
+                R.id.navigation_person -> replaceFragment(PersonFragment())
             }
             true
         }

@@ -17,4 +17,5 @@
     <string name="turtleguard">TurtleGuard</string>
     <string name="account">Account</string>
     <string name="editbutton">editButton</string>
+    <string name="add_report">add_report</string>
 </resources>

@@ -7,4 +7,13 @@
     <string name="report">report</string>
     <string name="schedule">schedule</string>
     <string name="homepage">homepage</string>
+    <string name="penyu_pipih">PENYU PIPIH</string>
+    <string name="penyu_hijau">penyu hijau</string>
+    <string name="penyu_tempayan">penyu tempayan</string>
+    <string name="penyu_blimbing">penyu blimbing</string>
+    <string name="penyu_tempayan1">PENYU TEMPAYAN</string>
+    <string name="penyu_hijau2">PENYU HIJAU</string>
+    <string name="penyu_blimbing2">PENYU BLIMBING</string>
+    <string name="turtleguard">TurtleGuard</string>
+    <string name="account">Account</string>
 </resources>

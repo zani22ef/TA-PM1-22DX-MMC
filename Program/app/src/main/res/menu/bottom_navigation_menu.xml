@@ -4,17 +4,17 @@
         android:id="@+id/navigation_home"
         android:icon="@drawable/nav_home"
         android:title="@string/home" />
-    <item
-        android:id="@+id/navigation_turtle"
-        android:icon="@drawable/nav_turtle"
-        android:title="@string/turtle" />
+
     <item
         android:id="@+id/navigation_report"
         android:icon="@drawable/nav_report"
         android:title="@string/report"
         android:visible="true" />
     <item
-        android:id="@+id/navigation_schedule"
-        android:icon="@drawable/nav_schedule"
-        android:title="@string/schedule" />
+        android:id="@+id/navigation_person"
+        android:icon="@drawable/person"
+        android:title="@string/account"
+        android:visible="true" />
+
+
 </menu>

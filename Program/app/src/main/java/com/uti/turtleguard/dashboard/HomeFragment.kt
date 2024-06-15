@@ -1,5 +1,6 @@
 package com.uti.turtleguard.dashboard
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.uti.turtleguard.ContentPenyuFragment
 import com.uti.turtleguard.R
+import com.uti.turtleguard.config.Lite
 import com.uti.turtleguard.databinding.FragmentHomeBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,11 +40,20 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-        replaceFragment(ContentPenyuFragment())
+        val sharedPreferences = requireContext().getSharedPreferences("namauser", Context.MODE_PRIVATE)
+        // Ambil nama pengguna yang login dari penyimpanan lokal
+        val loggedInUser = sharedPreferences.getString("logged_in_user", null)
 
-        return view
+        // Membuat instance Lite dengan menggunakan context fragment
+        val lite = Lite(requireContext())
+
+        // Memanggil metode getFirstName() dari instance Lite
+        val firstName = lite.getFirstName(loggedInUser)
+        // Inflate the layout for this fragment
+        val binding = FragmentHomeBinding.inflate(inflater,container,false)
+        replaceFragment(ContentPenyuFragment())
+        binding.tvTampilUser.setText("halo, " +firstName)
+        return binding.root
     }
 
     private fun replaceFragment(fragment: Fragment){

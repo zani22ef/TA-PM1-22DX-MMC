@@ -11,11 +11,11 @@ class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSI
     data class Pengguna(val namaLengkap: String, val username: String, val password: String)
     override fun onCreate(db: SQLiteDatabase?) {
         //        BUat variable untuk create table
-        val table = "CREATE TABLE pengguna(id INTEGER PRIMARY KEY AUTOINCREMENT, nama_lengkap VARCHAR(100), username CHAR(8), password VARCHAR(100))"
+        val table = "CREATE TABLE pengguna(id INTEGER PRIMARY KEY AUTOINCREMENT, nama_lengkap VARCHAR(100), username CHAR(8), password VARCHAR(100),hak_akses VARCHAR(100))"
 //        eksekusi kueri
         db?.execSQL(table)
 //        simpan data
-        val insert = "INSERT INTO pengguna(nama_lengkap, username, password) VALUES('ADMIN','root','admin')"
+        val insert = "INSERT INTO pengguna(nama_lengkap, username, password) VALUES('ADMIN','root','admin','admin')"
         db?.execSQL(insert)
     }
 
@@ -41,4 +41,5 @@ class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSI
         }
         return db.insert("pengguna", null, values)
     }
+
 }

@@ -79,7 +79,7 @@
             android:hint="Password"
             android:padding="10dp"
             android:digits="0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
-            android:inputType="textFilter"
+            android:inputType="textPassword"
             android:textColor="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 

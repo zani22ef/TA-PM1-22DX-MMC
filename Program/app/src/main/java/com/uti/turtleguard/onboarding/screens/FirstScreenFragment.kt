@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.uti.turtleguard.R
 import com.uti.turtleguard.databinding.FragmentFirstScreenBinding
+import com.uti.turtleguard.form.LoginFormFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,6 +45,10 @@ class FirstScreenFragment : Fragment() {
 
         binding.next.setOnClickListener {
             viewPager?.currentItem=1
+        }
+
+        binding.Skip.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.frmMain, LoginFormFragment()).commit()
         }
 
         return binding.root

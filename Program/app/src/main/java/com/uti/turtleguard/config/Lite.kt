@@ -55,5 +55,15 @@ class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSI
         db.close()
         return firstName
     }
+    // Fungsi untuk mengecek apakah username sudah ada di tabel pengguna
+    fun isUsernameExists(username: String): Boolean {
+        val db = readableDatabase
+        val query = "SELECT * FROM pengguna WHERE username = ?"
+        val cursor = db.rawQuery(query, arrayOf(username))
+        val exists = cursor.count > 0
+        cursor.close()
+        db.close()
+        return exists
+    }
 
 }

@@ -49,14 +49,18 @@ class SignupFormFragment : Fragment() {
             val username = binding.inputUsername.text.toString()
             val pass = binding.inputPassword.text.toString()
             if (nama.length>1 && username.length>1 && pass.length>1){
-                val pengguna = Lite.Pengguna(nama,  username, pass)
-                val hasil = lite.insertPengguna(pengguna)
-                if (hasil != -1L) {
-                    Toast.makeText(requireContext(), "Sign Up Berhasil, Silakan Login", Toast.LENGTH_LONG).show()
-                } else {
-                    Toast.makeText(requireContext(), "Gagal memasukkan data", Toast.LENGTH_SHORT).show()
+                if (lite.isUsernameExists(username)){
+                    Toast.makeText(requireContext(), "Username sudah digunakan, silakan gunakan username lain.", Toast.LENGTH_SHORT).show()
+                }else{
+                    val pengguna = Lite.Pengguna(nama,  username, pass)
+                    val hasil = lite.insertPengguna(pengguna)
+                    if (hasil != -1L) {
+                        Toast.makeText(requireContext(), "Sign Up Berhasil, Silakan Login", Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(requireContext(), "Gagal memasukkan data", Toast.LENGTH_SHORT).show()
+                    }
+                    requireActivity().supportFragmentManager.beginTransaction().replace(R.id.frmMain, LoginFormFragment()).commit()
                 }
-                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.frmMain, LoginFormFragment()).commit()
             } else {
                 Toast.makeText(requireContext(), "Semua form wajib diisi", Toast.LENGTH_LONG).show()
             }

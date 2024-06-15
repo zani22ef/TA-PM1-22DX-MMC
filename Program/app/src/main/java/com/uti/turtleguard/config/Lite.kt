@@ -29,6 +29,7 @@ class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSI
         val cursor = db.rawQuery(query, arrayOf(username, password))
         val count = cursor.count
         cursor.close()
+        db.close()
         return count > 0
     }
 

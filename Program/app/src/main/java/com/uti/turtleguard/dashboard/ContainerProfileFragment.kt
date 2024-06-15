@@ -1,5 +1,6 @@
 package com.uti.turtleguard.dashboard
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.uti.turtleguard.R
+import com.uti.turtleguard.databinding.FragmentContainerProfileBinding
 import com.uti.turtleguard.form.LoginFormFragment
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,8 +39,16 @@ class ContainerProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_container_profile, container, false)
+//        val view = inflater.inflate(R.layout.fragment_container_profile, container, false)
+        val binding = FragmentContainerProfileBinding.inflate(inflater, container, false)
 
+        binding.btnLogout.setOnClickListener {
+            val sharedPreferences = requireContext().getSharedPreferences("namauser", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.remove("logged_in_user")
+            editor.apply()
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.frmMain, LoginFormFragment()).commit()
+        }
 
 
 
@@ -46,7 +56,7 @@ class ContainerProfileFragment : Fragment() {
 //        btnLogout.setOnClickListener{
 //            replaceFragment(LoginFormFragment())
 //        }
-        return view
+        return binding.root
     }
 
     private fun replaceFragment(fragment: Fragment){

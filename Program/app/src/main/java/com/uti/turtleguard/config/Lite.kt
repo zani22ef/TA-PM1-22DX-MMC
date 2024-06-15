@@ -29,6 +29,7 @@ class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSI
         val cursor = db.rawQuery(query, arrayOf(username, password))
         val count = cursor.count
         cursor.close()
+        db.close()
         return count > 0
     }
 
@@ -40,6 +41,29 @@ class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSI
             put("password", pengguna.password)
         }
         return db.insert("pengguna", null, values)
+    }
+    fun getFirstName(loggedInUser: String?): String? {
+        val db = readableDatabase
+        val query = "SELECT nama_lengkap FROM pengguna WHERE username = ?"
+        val cursor = db.rawQuery(query, arrayOf(loggedInUser))
+        var firstName: String? = null
+        if (cursor != null && cursor.moveToFirst()) {
+            val fullName = cursor.getString(cursor.getColumnIndexOrThrow("nama_lengkap"))
+            firstName = fullName.split(" ").firstOrNull()
+            cursor.close()
+        }
+        db.close()
+        return firstName
+    }
+    // Fungsi untuk mengecek apakah username sudah ada di tabel pengguna
+    fun isUsernameExists(username: String): Boolean {
+        val db = readableDatabase
+        val query = "SELECT * FROM pengguna WHERE username = ?"
+        val cursor = db.rawQuery(query, arrayOf(username))
+        val exists = cursor.count > 0
+        cursor.close()
+        db.close()
+        return exists
     }
 
 }

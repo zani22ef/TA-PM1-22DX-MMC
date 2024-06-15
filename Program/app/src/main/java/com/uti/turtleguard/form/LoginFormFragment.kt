@@ -1,5 +1,6 @@
 package com.uti.turtleguard.form
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -52,8 +53,12 @@ class LoginFormFragment : Fragment() {
             val pass = binding.inputPassword.text.toString()
             val loginSukses = lite.login(username, pass)
             if (loginSukses) {
+                val sharedPreferences = requireContext().getSharedPreferences("namauser", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                // Simpan nama pengguna yang login
+                editor.putString("logged_in_user", username)
+                editor.apply()
                 Toast.makeText(requireContext(), "Login Berhasil", Toast.LENGTH_SHORT).show()
-
                     requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null)
                         .replace(R.id.frmMain, Bottom_Nav()).commit()
             } else {

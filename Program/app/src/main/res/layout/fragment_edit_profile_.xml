@@ -56,10 +56,10 @@
             android:text="Alamat"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_nama" />
+            app:layout_constraintTop_toBottomOf="@+id/inputLaporan" />
 
         <EditText
-            android:id="@+id/input_nama"
+            android:id="@+id/inputLaporan"
             android:layout_width="363dp"
             android:layout_height="51dp"
             android:layout_marginStart="32dp"

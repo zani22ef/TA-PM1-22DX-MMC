@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uti.turtleguard.adapter.cobaAdapter
+import com.uti.turtleguard.adapter.ReportAncamanAdapter
 import com.uti.turtleguard.config.Lite
 import com.uti.turtleguard.databinding.FragmentCobaTampilBinding
 
@@ -44,9 +45,9 @@ class CobaTampilFragment : Fragment() {
         recycler.layoutManager = LinearLayoutManager(requireContext())
 
         val lite = Lite(requireContext())
-        val pengguna = lite.getAllPengguna()
-        val PenggunaAdapter = cobaAdapter(penggunaList = pengguna)
-        binding.recyclerView.adapter = PenggunaAdapter
+        val report = lite.getAllReport()
+        val ReportAdapter = ReportAncamanAdapter(reportList = report)
+        binding.recyclerView.adapter = ReportAdapter
         return binding.root
     }
 

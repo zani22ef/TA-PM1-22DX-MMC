@@ -9,6 +9,7 @@ import com.uti.turtleguard.config.Constant.Companion.DB_VERSION
 
 class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
     data class Pengguna(val namaLengkap: String, val username: String, val password: String)
+    data class Reports(val laporan: String, val keterangan: String, val lokasi: String, val statusLaporan: String)
     override fun onCreate(db: SQLiteDatabase?) {
         //        BUat variable untuk create table
         val table = "CREATE TABLE pengguna(" +
@@ -19,6 +20,16 @@ class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSI
                 "hak_akses VARCHAR(20))"
 //        eksekusi kueri
         db?.execSQL(table)
+
+        //        simpan data
+        val insert = "INSERT INTO pengguna(nama_lengkap, username, password, hak_akses) VALUES" +
+                "('ADMIN','root','admin','admin')," +
+                "('HERU ARBIANTO', 'heru', 'arbi','user')," +
+                "('Zani Eko F', 'zani', 'eko','user')"
+        db?.execSQL(insert)
+        val insertuser = "INSERT INTO pengguna(id, nama_lengkap, username, password, hak_akses) VALUES" +
+                "(7887,'user','user','user','user')"
+        db?.execSQL(insertuser)
 
         // Buat variable untuk create table report
         val tableReport = "CREATE TABLE report(" +
@@ -32,21 +43,13 @@ class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSI
 
         // Eksekusi kueri untuk membuat tabel report
         db?.execSQL(tableReport)
-//        simpan data
-        val insert = "INSERT INTO pengguna(nama_lengkap, username, password) VALUES" +
-                "('ADMIN','root','admin','admin')," +
-                "('HERU ARBIANTO', 'heru', 'arbi','user')," +
-                "('Zani Eko F', 'zani', 'eko','user')"
-        db?.execSQL(insert)
-        val insertuser = "INSERT INTO pengguna(id, nama_lengkap, username, password) VALUES" +
-                "(2,'user','user','user','user')"
-        db?.execSQL(insertuser)
+
 
 //        Insert Report
-        val insertreport = "INSERT INTO tableReport(laporan, keterangan, lokasi, statusLaporan, idPengguna) VALUES" +
-                "('Penyelundupan telur penyu di peabuhan','ada indikasi penyelundupan telur penyu di pelabuhan','Pelabuhan Bakauheni','Belum Ditindak', 2)," +
-                "('Perburuan Penyu','terdapat pemburu yang sedang berburu penyu','Pantai Mutun','Belum Ditindak', 2)," +
-                "('Perdagangan ilegal Cangkang Penyu','Ditemukan perdagangan cangkang penyu ilegal di pasar','Pasar Bambbu Kuning','Belum Ditindak', 2)"
+        val insertreport = "INSERT INTO report(laporan, keterangan, lokasi, statusLaporan, idPengguna) VALUES" +
+                "('Penyelundupan telur penyu di peabuhan','ada indikasi penyelundupan telur penyu di pelabuhan','Pelabuhan Bakauheni','Belum Ditindak', 7887)," +
+                "('Perburuan Penyu','terdapat pemburu yang sedang berburu penyu','Pantai Mutun','Belum Ditindak', 7887)," +
+                "('Perdagangan ilegal Cangkang Penyu','Ditemukan perdagangan cangkang penyu ilegal di pasar','Pasar Bambbu Kuning','Belum Ditindak', 7887)"
         db?.execSQL(insertreport)
 
 
@@ -98,6 +101,30 @@ class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSI
         db.close()
         return exists
     }
+
+//    ambil semua data report
+fun getAllReport(): List<Reports> {
+    val reportList = mutableListOf<Reports>()
+    val db = readableDatabase
+    val query = "SELECT laporan, keterangan, lokasi, statusLaporan FROM report" // Ubah tableReport menjadi report
+    val cursor = db.rawQuery(query, null)
+
+    if (cursor.moveToFirst()) {
+        do {
+            val laporan = cursor.getString(cursor.getColumnIndexOrThrow("laporan"))
+            val keterangan = cursor.getString(cursor.getColumnIndexOrThrow("keterangan"))
+            val lokasi = cursor.getString(cursor.getColumnIndexOrThrow("lokasi"))
+            val statusLaporan = cursor.getString(cursor.getColumnIndexOrThrow("statusLaporan")) // Ubah status menjadi statusLaporan
+            reportList.add(Reports(laporan, keterangan, lokasi, statusLaporan))
+        } while (cursor.moveToNext())
+    }
+
+    cursor.close()
+    db.close()
+    return reportList
+}
+
+
 //code percobaan
 fun getAllPengguna(): List<Pengguna> {
     val penggunaList = mutableListOf<Pengguna>()

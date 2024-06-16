@@ -85,10 +85,10 @@ class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSI
             put("laporan", report.laporan)
             put("keterangan", report.keterangan)
             put("lokasi", report.lokasi)
-            put("status", report.statusLaporan)
+            put("statusLaporan", report.statusLaporan)
             put("idPengguna", report.idPengguna)
         }
-        return db.insert("pengguna", null, values)
+        return db.insert("report", null, values)
     }
     fun getFirstName(loggedInUser: String?): String? {
         val db = readableDatabase

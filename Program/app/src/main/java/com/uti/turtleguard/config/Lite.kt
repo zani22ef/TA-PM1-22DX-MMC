@@ -10,6 +10,7 @@ import com.uti.turtleguard.config.Constant.Companion.DB_VERSION
 class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
     data class Pengguna(val namaLengkap: String, val username: String, val password: String)
     data class Reports(val laporan: String, val keterangan: String, val lokasi: String, val statusLaporan: String)
+    data class Reportsinsert(val laporan: String, val keterangan: String, val lokasi: String, val statusLaporan: String, val idPengguna: Int)
     override fun onCreate(db: SQLiteDatabase?) {
         //        BUat variable untuk create table
         val table = "CREATE TABLE pengguna(" +
@@ -78,6 +79,17 @@ class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSI
         }
         return db.insert("pengguna", null, values)
     }
+    fun insertReport(report: Reportsinsert): Long {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("laporan", report.laporan)
+            put("keterangan", report.keterangan)
+            put("lokasi", report.lokasi)
+            put("statusLaporan", report.statusLaporan)
+            put("idPengguna", report.idPengguna)
+        }
+        return db.insert("report", null, values)
+    }
     fun getFirstName(loggedInUser: String?): String? {
         val db = readableDatabase
         val query = "SELECT nama_lengkap FROM pengguna WHERE username = ?"
@@ -91,6 +103,22 @@ class Lite (context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSI
         db.close()
         return firstName
     }
+
+
+//buat fungsi get id berdasarkan sesi login user
+fun getUserId(loggedInUser: String?): Long? {
+    val db = readableDatabase
+    val query = "SELECT id FROM pengguna WHERE username = ?"
+    val cursor = db.rawQuery(query, arrayOf(loggedInUser))
+    var userId: Long? = null
+    if (cursor != null && cursor.moveToFirst()) {
+        userId = cursor.getLong(cursor.getColumnIndexOrThrow("id"))
+        cursor.close()
+    }
+    db.close()
+    return userId
+}
+
     // Fungsi untuk mengecek apakah username sudah ada di tabel pengguna
     fun isUsernameExists(username: String): Boolean {
         val db = readableDatabase

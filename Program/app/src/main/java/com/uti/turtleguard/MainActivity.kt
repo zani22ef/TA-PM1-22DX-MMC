@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         if (loggedInUser != null) {
             // Pengguna sudah login, arahkan ke halaman utama
             supportFragmentManager.beginTransaction().replace(R.id.frmMain, Bottom_Nav()).commit()
+//            supportFragmentManager.beginTransaction().replace(R.id.frmMain, CobaTampilFragment()).commit()
         } else {
             // Pengguna belum login, tampilkan onboarding
             supportFragmentManager.beginTransaction().replace(R.id.frmMain, ViewPagerFragment()).commit()
